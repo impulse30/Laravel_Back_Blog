@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Article extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'slug',
+        'photo',
+        'auteur',
+        'content'
+    ];
 
     public function comments(): HasMany
     {

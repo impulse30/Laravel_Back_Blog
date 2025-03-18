@@ -20,7 +20,7 @@ Route::get('/pays',function(){
    return $pays;
 
 });
-Route::apiResource('articles', ArticleController::class);
+Route::apiResource('/articles', ArticleController::class);
 
 
 Route::post('/login', function (Request $request) {
