@@ -23,6 +23,7 @@ class ArticleResource extends JsonResource
             "auteur"=>$this->auteur,
             "content"=>$this->content,
             'comment'=>$this->comments,
+            'category'=> $this->categories,
             'created_at'=>$this->created_at,
            ' updated_at'=>$this->updated_at,
 

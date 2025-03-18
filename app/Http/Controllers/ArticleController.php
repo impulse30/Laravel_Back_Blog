@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Str;
 
 class ArticleController extends Controller
 {
@@ -13,23 +15,24 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticleResource::collection(Article::paginate(10));
+        return ArticleResource::collection(Article::all());
        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $article=new Article();
-        $article->title=$request->title;
-        $article->slug=$request->slug;
-        $article->photo=$request->photo;
-        $article->auteur=$request->auteur;
-        $article->content=$request->content;
-
-        $article->save();
+        $data =array_merge(
+            $request->all(),
+            [
+                "slug"=> Str::slug($request->title),
+            ]
+            );
+            $article = Article::create($data);
+            $article->categories()->attach($request->category_id);
+      
 
         
     }
