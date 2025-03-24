@@ -16,7 +16,6 @@ class ArticleController extends Controller
     public function index()
     {
         return ArticleResource::collection(Article::all());
-       
     }
 
     /**
@@ -24,17 +23,14 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $data =array_merge(
+        $data = array_merge(
             $request->all(),
             [
-                "slug"=> Str::slug($request->title),
+                "slug" => Str::slug($request->title),
             ]
-            );
-            $article = Article::create($data);
-            $article->categories()->attach($request->category_id);
-      
-
-        
+        );
+        $article = Article::create($data);
+        $article->categories()->attach($request->category_id);
     }
 
     /**
@@ -56,8 +52,5 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
-    {
-        
-    }
+    public function destroy(Article $article) {}
 }
