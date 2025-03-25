@@ -23,8 +23,9 @@ class ArticleResource extends JsonResource
             "photo" => $this->photo,
             "auteur" => $this->auteur,
             "content" => $this->content,
-            'comment' => CommentResource::collection($this->comments)->count(),
-            'category' => CategoryResource::collection(Category::all()),
+            'nb_comment' => CommentResource::collection($this->comments)->count(),
+            'comment' => CommentResource::collection($this->comments),
+            'category' => CategoryResource::collection($this->categories),
             'created_at' => $this->created_at,
             ' updated_at' => $this->updated_at,
 

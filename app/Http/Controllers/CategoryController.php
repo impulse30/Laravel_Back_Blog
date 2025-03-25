@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $commment = Comment::all();
+        $category = Category::all();
 
-        return $commment;
+        return response()->json($category);
     }
 
     /**
@@ -22,28 +22,25 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        // Validation des données
         $validated = $request->validate([
-            'content' => 'required|string',
-            'article_id' => 'required|exists:articles,id',
-            'auteur' => 'required|string',
+            'name' => 'required',
+            'description' => 'required',
         ]);
 
-        // Création du commentaire
-        $comment = Comment::create($validated);
+        $category = Category::create([
+            'name'=> $validated['name'],
+            'description'=> $validated['description'],
+        ]);
 
-        return response()->json([
-            'message' => 'Commentaire ajouté avec succès !',
-            'comment' => $comment
-        ], 201);
+        return response()->json($category);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        return $category;
     }
 
     /**
