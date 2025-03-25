@@ -5,6 +5,7 @@ use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Hash;
 
 Route::get('/user', function (Request $request) {
@@ -43,3 +44,4 @@ Route::post('/login', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {});
 Route::apiResource('articles', ArticleController::class);
+Route::apiResource('/categories', CategoryController::class);

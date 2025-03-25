@@ -22,12 +22,12 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title"=>"required|string|min:3",
-            "photo"=>["required","url"],
-            "auteur"=>["required","string"],
-            "content"=>["required","string","min:100"],
-            "category_id"=>["required","exists:categories,id"]
-            
+            "title" => "required|string|min:3",
+            "photo" => ["required", "url"],
+            "auteur" => ["required", "string"],
+            "content" => ["required", "string"],
+            "category_id" => ["required", "exists:categories,id"]
+
         ];
     }
 }
